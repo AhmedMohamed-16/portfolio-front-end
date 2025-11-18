@@ -1,0 +1,181 @@
+<section class="bg-white p-6 rounded-lg shadow">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">Contact</h2>
+    <button class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      (click)="showContactForm = !showContactForm">
+      {{ showContactForm ? 'Cancel' : 'Update and Add Contact' }}
+    </button>
+  </div>
+
+  <!-- ADD PROJECT FORM -->
+  <form *ngIf="showContactForm" [formGroup]="myForm" (ngSubmit)="onSubmit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <!-- Header -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">header section</label>
+      <input type="text" formControlName="header_section" placeholder="header_section"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+    </div>
+
+    <!-- Description -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">description section</label>
+      <input type="text" formControlName="description_section" placeholder="description_section"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+    </div>
+
+
+    <!-- Icon -->
+    <!-- <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Icon</label>
+      <input type="file" (change)="onUploadIcon($event)"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+    </div> -->
+
+
+    <div formGroupName="contact_form" class="mb-4" style="margin:20px;">
+      <label class="text-gray-700 font-medium mb-1">Contact Form Text</label>
+      <input formControlName="name" placeholder="Name" class="border p-2 rounded w-full mb-1" />
+      <input formControlName="email" placeholder="email" class="border p-2 rounded w-full mb-1" />
+      <input formControlName="project_type" placeholder="project type" class="border p-2 rounded w-full mb-1" />
+      <input formControlName="message" placeholder="message" class="border p-2 rounded w-full mb-1" />
+      <input formControlName="send_message" placeholder="send button" class="border p-2 rounded w-full mb-1" />
+    </div>
+
+
+
+    <div formArrayName="contact_info" class="col-span-1 md:col-span-2" style="margin:20px;">
+      <!-- <div formGroupName class="mb-4"> -->
+      <label class="text-gray-700 font-medium mb-1 block">contact info</label>
+      <input formControlName="header" placeholder="header" class="border p-2 rounded w-full mb-1" />
+      <input formControlName="description" placeholder="description" class="border p-2 rounded w-full mb-1" />
+
+
+      <div formArrayName="contact_info_item">
+        <div *ngFor="let info of contact_info_item.controls; let i = index" [formGroupName]="i"
+          class="flex items-center gap-2 mt-2" style="margin:20px;">
+
+
+          <label class="text-gray-700 font-medium mb-1 block">contact info_item</label>
+
+          <!-- Show current icon preview -->
+          <!-- <div *ngIf="info.value.icon">
+            <img [src]="'http://localhost:3000/'+info.value.icon" class="h-12 w-12 object-contain" style="width:50px" />
+          </div> -->
+          <div *ngIf="iconPreviews[i]" class="mt-4">
+            <img [src]="iconPreviews[i]" alt="Preview" class="w-40 h-40 rounded object-cover border"
+              style="width: 50px;" />
+          </div>
+          <input type="file" (change)="onUploadIcon($event,i,info)" placeholder="contact icon"
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+          <input formControlName="header" placeholder="header  "
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full" />
+          <input formControlName="description" placeholder="description"
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full" />
+          <select formControlName="type"
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full">
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+            <option value="other">Other</option>
+          </select>
+
+          <button type="button" (click)="removeItems_contact_info_item(i)"
+            class="mt-2 px-3 py-1 bg-gray-600 text-white rounded" style="width:30%">Remove
+            contact_info item</button>
+        </div>
+
+        <button type="button" (click)="addItems_contact_info_item()"
+          class="mt-2 px-3 py-1 bg-gray-600 text-white rounded">Add
+          contact_info item</button>
+
+      </div>
+
+
+
+
+      <div formArrayName="contact_info_social_link">
+
+        <div *ngFor="let social of contact_info_social_link.controls; let i = index" [formGroupName]="i"
+          class="flex items-center gap-2 mt-2" style="margin:20px;">
+          <label class="text-gray-700 font-medium mb-1 block">contact contact_info_social_link</label>
+
+          <input formControlName="link" placeholder="link  "
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full" />
+          <input formControlName="svg" placeholder="svg  "
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full" />
+          <button type="button" (click)="removeItems_info_social_link(i)"
+            class="mt-2 px-3 py-1 bg-gray-600 text-white rounded" style="width:30%">Remove
+            info_social_link item</button>
+        </div>
+        <button type="button" (click)="addItems_info_social_link()"
+          class="mt-2 px-3 py-1 bg-gray-600 text-white rounded">Add
+          info_social_link item</button>
+
+      </div>
+
+    </div>
+    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 w-fit">
+      Save Contact
+    </button>
+  </form>
+</section>
+
+
+
+
+<!-- Contact Section -->
+<!-- <section class="bg-white p-6 rounded-lg shadow">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold">Contact Section</h2>
+      <button class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+              (click)="showContactForm = !showContactForm">
+        {{ showContactForm ? 'Cancel' : 'Edit Section' }}
+      </button>
+    </div>
+
+    <div *ngIf="showContactForm" class="space-y-2">
+      <input type="text" placeholder="Section Header" [(ngModel)]="contactData.header_section"
+             class="w-full px-3 py-2 border rounded" />
+      <input type="text" placeholder="Section Description" [(ngModel)]="contactData.description_section"
+             class="w-full px-3 py-2 border rounded" />
+      <button (click)="updateContact()" class="px-3 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+        Update Section
+      </button>
+    </div> -->
+
+<!-- Contact Info Items -->
+<!-- <div class="mt-4">
+      <h3 class="font-bold mb-2">Contact Info Items</h3>
+      <button (click)="showItemForm = !showItemForm"
+              class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 mb-2">
+        {{ showItemForm ? 'Cancel' : 'Add Item' }}
+      </button>
+
+      <div *ngIf="showItemForm" class="space-y-2 mb-2">
+        <input type="text" placeholder="Header" [(ngModel)]="itemData.header"
+               class="w-full px-3 py-2 border rounded" />
+        <input type="text" placeholder="Description" [(ngModel)]="itemData.description"
+               class="w-full px-3 py-2 border rounded" />
+        <select [(ngModel)]="itemData.type" class="w-full px-3 py-2 border rounded">
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+          <option value="other">Other</option>
+        </select>
+        <button (click)="addContactItem()" class="px-3 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+          Save Item
+        </button>
+      </div>
+
+      <ul class="space-y-2">
+        <li *ngFor="let item of contactData.contact_info.contact_info_item" class="flex justify-between items-center p-2 border rounded">
+          <span>{{ item.header }} - {{ item.description }} ({{ item.type }})</span>
+          <div class="flex gap-2">
+            <button (click)="editContactItem(item)" class="text-indigo-600 hover:text-indigo-800">Edit</button>
+            <button (click)="deleteContactItem(item._id)" class="text-red-600 hover:text-red-800">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section> -->

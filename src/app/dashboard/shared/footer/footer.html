@@ -1,0 +1,49 @@
+<section class="bg-white p-6 rounded-lg shadow">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">Footer</h2>
+    <button class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      (click)="showFooterForm = !showFooterForm">
+      {{ showFooterForm ? 'Cancel' : 'Update and Add Footer Links' }}
+    </button>
+  </div>
+
+  <!-- Footer Form -->
+  <form *ngIf="showFooterForm" [formGroup]="myForm" (ngSubmit)="onSubmit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <!-- Description -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Description</label>
+      <input type="text" formControlName="description" placeholder="Description"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+    </div>
+
+    <!-- Links FormArray -->
+    <div formArrayName="links" class="col-span-1 md:col-span-2">
+      <label class="text-gray-700 font-medium mb-1 block">Footer Links</label>
+
+      <div *ngFor="let link of links.controls; let i = index" [formGroupName]="i"
+        class="flex flex-col gap-2 mb-4 border p-3 rounded">
+        <input formControlName="name" placeholder="Link Name" class="border p-2 rounded w-full" />
+        <input formControlName="url" placeholder="Link URL" class="border p-2 rounded w-full" />
+
+        <button type="button" (click)="deleteLink(link)" class="px-3 py-1 bg-gray-600 text-white rounded w-fit">
+          Remove Link
+        </button>
+
+      </div>
+
+      <button type="button" (click)="addLink()" class="mt-2 px-3 py-1 bg-gray-600 text-white rounded w-fit">
+        Add Link
+      </button>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 w-fit">
+      Save Footer
+    </button>
+
+  </form>
+</section>

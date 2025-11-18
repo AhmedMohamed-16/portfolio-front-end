@@ -1,0 +1,65 @@
+<!-- About Section -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{AboutData.header_section}}</h2>
+      <p>{{AboutData.description_section}}</p>
+    </div>
+    <div class="about-content">
+      <div class="about-image">
+        <!-- Replace the src below with your actual photo URL -->
+        <!-- Option 1: Use your own image -->
+        <img [src]="'http://localhost:3000/uploads/about/'+ AboutData.img" alt="Ahmed Mohamed Eid" class="profile-img">
+
+        <!-- Option 2: Placeholder with professional styling (currently active) -->
+        <!-- <div class="placeholder-img">
+        <div style="z-index: 1; text-align: center;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">👨‍💻</div>
+            <div style="font-size: 1.5rem; font-weight: 600;">Ahmed M. Eid</div>
+            <div style="font-size: 1rem; opacity: 0.9; margin-top: 0.5rem;">Backend Developer</div>
+        </div>
+    </div> -->
+      </div>
+      <div class="about-text">
+        <h3>{{AboutData.header}}</h3>
+        <p *ngFor="let par of paragraphs">
+          {{ par }}
+        </p>
+        <!-- <p>
+                        I'm a passionate Backend Developer who recently graduated from Minufiya University with a
+                        Computer Science degree (GPA: 3.56, 4th in class). My journey into development started with .NET
+                        and has evolved to include Node.js and NestJS, allowing me to build versatile, high-performance
+                        backend solutions.
+                    </p>
+                    <p>
+                        What sets me apart is my adaptive approach to technology. I believe in choosing the right tool
+                        for the job, whether it's ASP.NET Core for enterprise applications or NestJS for scalable
+                        microservices. I'm committed to writing clean, maintainable code and following best practices
+                        like SOLID principles and design patterns.
+                    </p>
+                    <p>
+                        Currently, I'm focused on building production-ready APIs, optimizing database performance, and
+                        exploring cloud technologies. I'm particularly excited about Docker, microservices architecture,
+                        and creating seamless integrations between different systems. My goal is to contribute to
+                        impactful products that solve real-world problems.
+                    </p> -->
+
+        <h3 style="margin-top: 2rem;">Tech Stack</h3>
+        <div class="tech-stack">
+          <span *ngFor="let t of techs;let i = index" class="tech-badge">{{t['name']}}</span>
+          <!-- <span class="tech-badge">ASP.NET Core</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">NestJS</span>
+          <span class="tech-badge">C#</span>
+          <span class="tech-badge">TypeScript</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">SQL Server</span>
+          <span class="tech-badge">MongoDB</span>
+          <span class="tech-badge">Entity Framework</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">Git</span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

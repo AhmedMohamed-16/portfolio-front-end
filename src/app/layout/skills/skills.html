@@ -1,0 +1,142 @@
+<!-- Skills Section -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{lastSkillWithSection.header_section}}</h2>
+      <p>{{lastSkillWithSection.description_section}}</p>
+    </div>
+    <div class="skills-grid">
+      <!-- Backend Skills -->
+      <div class="skill-category" *ngFor="let skill of skills">
+
+        <h3>{{skill.name}}</h3>
+        <div class="skill-item" *ngFor="let item of skill.items">
+          <div class="skill-name">
+            <span>{{item.name}}</span>
+            <span>{{item.experience_years}} yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" [style.width.%]="item.progress_percent"></div>
+          </div>
+        </div>
+        <!-- <div class="skill-item">
+          <div class="skill-name">
+            <span>Node.js & NestJS</span>
+            <span>1 yr</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>C#</span>
+            <span>2 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div> -->
+      </div>
+
+
+
+
+      <!-- Database Skills -->
+      <!-- <div class="skill-category">
+        <h3>Databases</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>SQL Server</span>
+            <span>2 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 82%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>PostgreSQL</span>
+            <span>1 yr</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 78%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>MongoDB</span>
+            <span>1 yr</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 75%"></div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- DevOps & Tools -->
+      <!-- <div class="skill-category">
+        <h3>DevOps & Tools</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Docker</span>
+            <span>1 yr</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Git & GitHub</span>
+            <span>2 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 88%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Postman</span>
+            <span>2 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Core Concepts -->
+      <!-- <div class="skill-category">
+        <h3>Core Concepts</h3>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>OOP & Design Patterns</span>
+            <span>2 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>REST APIs</span>
+            <span>2 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 88%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">
+            <span>Data Structures & Algorithms</span>
+            <span>3 yrs</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>

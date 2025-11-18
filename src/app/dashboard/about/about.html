@@ -1,0 +1,126 @@
+<!-- <section class="bg-white p-6 rounded-lg shadow">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">About Section</h2>
+    <button
+      class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      (click)="showAboutForm = !showAboutForm"
+    >
+      {{ showAboutForm ? 'Cancel' : 'Edit About' }}
+    </button>
+  </div>
+
+  <div *ngIf="showAboutForm" class="space-y-3">
+    <textarea
+      class="w-full px-3 py-2 border rounded"
+      rows="4"
+      placeholder="About Description"
+      [(ngModel)]="aboutData.description"
+    ></textarea>
+
+    <textarea
+      class="w-full px-3 py-2 border rounded"
+      rows="2"
+      placeholder="Short Highlight / Summary"
+      [(ngModel)]="aboutData.summary"
+    ></textarea>
+
+    <input
+      type="text"
+      class="w-full px-3 py-2 border rounded"
+      placeholder="Profile Image URL"
+      [(ngModel)]="aboutData.image"
+    />
+
+    <button
+      class="px-3 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      (click)="updateAboutSection()"
+    >
+      Update About
+    </button>
+  </div>
+</section> -->
+
+<section class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">About Section</h2>
+
+    <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+      (click)="showHomeForm = !showHomeForm">
+      {{ showHomeForm ? "Close" : "Edit Home" }}
+    </button>
+  </div>
+
+  <!-- FORM -->
+  <form *ngIf="showHomeForm" (ngSubmit)="onSubmit(myForm)" #myForm="ngForm"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">header section Text</label>
+      <input type="text" name="header_section" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        [(ngModel)]="aboutData.header_section" placeholder="header_section Text" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">description section Text</label>
+      <input type="text" name="description_section" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        [(ngModel)]="aboutData.description_section" placeholder="Main Header" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">photo</label>
+      <input type="file" name="img" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" [(ngModel)]="aboutData.img"
+        (change)="uploadImage($event)" />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">header of about </label>
+      <input type="text" name="header" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        [(ngModel)]="aboutData.header" />
+    </div>
+
+
+    <div class="flex flex-col col-span-1 md:col-span-2">
+      <label class="text-gray-700 font-medium mb-1">Content</label>
+      <textarea name="content" ngModel rows="3" [(ngModel)]="aboutData.content" placeholder="content"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+    </div>
+
+
+
+
+    <!-- Submit Button Full Width -->
+    <div class="col-span-1 md:col-span-2 flex justify-end">
+      <button type="submit" class="px-6 py-3 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition">
+        Save Changes
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">Techs About Section</h2>
+
+    <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+      (click)="showTechForm = !showTechForm">
+      {{ showTechForm ? "Close" : "Edit Home" }}
+    </button>
+  </div>
+  <form *ngIf="showTechForm" [formGroup]="myFormTechs" (ngSubmit)="onSubmitTechs()">
+
+    <div formArrayName="techs">
+      <div *ngFor="let tech of techs.controls; let i = index">
+        <input [formControlName]="i" />
+      </div>
+      <button type="button" (click)="addTechs()">Add technology</button>
+
+    </div>
+
+    <button type="submit">Save Techs</button>
+  </form>
+</section>

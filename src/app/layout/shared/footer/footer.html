@@ -1,0 +1,11 @@
+<footer>
+  <p>{{footerData.description}}</p>
+  <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+    <a *ngFor="let link of footerData.links" [href]="link.url"
+      style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 1rem;">{{link.name}}</a>
+    <!-- <a href="https://github.com/AhmedMohamed-16"
+                style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 1rem;">GitHub</a>
+            <a href="https://linkedin.com/in/ahmed-mo-eid"
+                style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 1rem;">LinkedIn</a> -->
+  </p>
+</footer>

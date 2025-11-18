@@ -1,0 +1,79 @@
+<!-- Projects Section -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <h2>{{section.header_section }}</h2>
+      <p>{{section.description_section}}</p>
+    </div>
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card" *ngFor="let p of projects">
+        <!-- <div class="project-image"><img [src]="'http://localhost:3000'+p['icon']" [alt]="p['icon']"></div> -->
+        <div class="project-image">
+          <img [src]="'http://localhost:3000' + p.icon" [ngClass]="{ 'icon-small': p.isIcon }" [alt]="p.title" />
+        </div>
+
+        <div class="project-content">
+          <h3>{{p['title']}}</h3>
+          <p>{{p['description']}}</p>
+          <div class="project-tech">
+            <span class="tech-tag" *ngFor="let t of p.techs">{{t.name}}</span>
+            <!-- <span class="tech-tag">Node.js</span> -->
+            <!-- <span class="tech-tag">NestJS</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">JWT</span> -->
+          </div>
+          <div class="project-links">
+            <a [href]="p['link']">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <!-- <div class="project-card">
+        <div class="project-image">🛒</div>
+        <div class="project-content">
+          <h3>Online Marketplace</h3>
+          <p>A multi-vendor e-commerce platform with individual dashboards for buyers, sellers, and
+            admins. Features include comprehensive review and rating system, PayPal and Stripe payment
+            integration, and a recommendation engine using user data to boost product discovery and
+            enhance user experience.</p>
+          <div class="project-tech">
+            <span class="tech-tag">ASP.NET Core</span>
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">Entity Framework</span>
+            <span class="tech-tag">SQL Server</span>
+            <span class="tech-tag">Razor Pages</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AhmedMohamed-16">GitHub →</a>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Project 3 -->
+      <!-- <div class="project-card">
+        <div class="project-image">🔧</div>
+        <div class="project-content">
+          <h3>Backend API Services</h3>
+          <p>Collection of RESTful APIs built during my internships at Sherkety Company and DEPI.
+            Developed scalable backend services with optimized PostgreSQL queries, implemented secure
+            authentication systems, and built modular features following best practices for enterprise
+            applications.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flectra</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">.NET</span>
+            <span class="tech-tag">REST APIs</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AhmedMohamed-16">GitHub →</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+<section class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">Home Section</h2>
+
+    <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+      (click)="showHomeForm = !showHomeForm">
+      {{ showHomeForm ? "Close" : "Edit Home" }}
+    </button>
+  </div>
+
+  <!-- FORM -->
+  <form *ngIf="showHomeForm" (ngSubmit)="onSubmit(myForm)" #myForm="ngForm"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <!-- Logo Text -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Logo Text</label>
+      <input type="text" name="logo" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" [(ngModel)]="homeData.logo"
+        placeholder="Logo Text" />
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Main Header</label>
+      <input type="text" name="header" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        [(ngModel)]="homeData.header" placeholder="Main Header" />
+    </div>
+
+    <!-- Tagline -->
+    <div class="flex flex-col col-span-1 md:col-span-2">
+      <label class="text-gray-700 font-medium mb-1">Tagline</label>
+      <textarea name="tagline" ngModel rows="3" [(ngModel)]="homeData.tagline" placeholder="Tagline"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+    </div>
+
+    <!-- Project button text -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Project Button Text</label>
+      <input type="text" name="project_section" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        [(ngModel)]="homeData.project_section" placeholder="Project Button Text" />
+    </div>
+
+    <!-- Contact button text -->
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Contact Button Text</label>
+      <input type="text" name="contact_section" ngModel
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        [(ngModel)]="homeData.contact_section" placeholder="Contact Button Text" />
+    </div>
+
+    <!-- Submit Button Full Width -->
+    <div class="col-span-1 md:col-span-2 flex justify-end">
+      <button type="submit" class="px-6 py-3 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition">
+        Save Changes
+      </button>
+    </div>
+  </form>
+</section>

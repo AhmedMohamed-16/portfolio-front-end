@@ -1,0 +1,161 @@
+<section class="bg-white p-6 rounded-lg shadow">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">Projects</h2>
+    <button class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      (click)="showProjectForm = !showProjectForm">
+      {{ showProjectForm ? 'Cancel' : 'Add Project' }}
+    </button>
+  </div>
+
+  <!-- ADD PROJECT FORM -->
+  <form *ngIf="showProjectForm" [formGroup]="myForm" (ngSubmit)="onSubmit()"
+    class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Modify header section</label>
+      <input type="text" formControlName="header_section" placeholder="header_section"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+    </div>
+    <div class="flex flex-col">
+      <label class="text-gray-700 font-medium mb-1">Modify description section</label>
+      <input type="text" formControlName="description_section" placeholder="description_section"
+        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+    </div>
+    <div class="flex flex-col" style="margin:30px">
+      <!-- Title -->
+      <div class="flex flex-col">
+        <label class="text-gray-700 font-medium mb-1">Title</label>
+        <input type="text" formControlName="title" placeholder="Title"
+          class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+      </div>
+
+      <!-- Description -->
+      <div class="flex flex-col">
+        <label class="text-gray-700 font-medium mb-1">Description</label>
+        <input type="text" formControlName="description" placeholder="Description"
+          class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+      </div>
+
+      <!-- Link -->
+      <div class="flex flex-col">
+        <label class="text-gray-700 font-medium mb-1">Link</label>
+        <input type="text" formControlName="link" placeholder="Project Link"
+          class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+      </div>
+
+      <!-- Icon -->
+      <div class="flex flex-col">
+        <label class="text-gray-700 font-medium mb-1">Icon</label>
+        <input type="file" (change)="onUploadIcon($event)"
+          class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+      </div>
+
+      <!-- Techs -->
+      <div formArrayName="techs" class="col-span-1 md:col-span-2">
+        <label class="text-gray-700 font-medium mb-1 block">Technologies</label>
+        <div *ngFor="let tech of techs.controls; let i = index" class="flex items-center gap-2 mt-2">
+          <input [formControlName]="i" placeholder="Technology"
+            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full" />
+        </div>
+        <button type="button" (click)="addTechs()" class="mt-2 px-3 py-1 bg-green-600 text-white rounded">
+          + Add Technology
+        </button>
+      </div>
+    </div>
+    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 w-fit">
+      Save Project
+    </button>
+  </form>
+
+  <!-- Project List -->
+  <div class="flex justify-between items-center mb-4 mt-6">
+    <h2 class="text-xl font-bold">Projects List</h2>
+    <button class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      (click)="showProjectList = !showProjectList">
+      {{ showProjectList ? 'Cancel' : 'Projects' }}
+    </button>
+  </div>
+
+  <ul class="space-y-3" *ngIf="showProjectList">
+    <li *ngFor="let p of projectData" class="border rounded p-4 flex justify-between items-start">
+      <div>
+        <h3 class="text-lg font-bold">{{ p.title }}</h3>
+        <p class="text-gray-700">{{ p.description }}</p>
+
+        <!-- Tech list -->
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span *ngFor="let t of p.techs" class="text-sm bg-gray-200 px-2 py-1 rounded">
+            {{ t.name }}
+          </span>
+        </div>
+
+        <!-- UPDATE FORM -->
+        <form *ngIf="updatingProjectId === p._id" [formGroup]="myForm"
+          class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4" (ngSubmit)="editProject(p)">
+          <!-- Title -->
+          <div class="flex flex-col">
+            <label class="text-gray-700 font-medium mb-1">Title</label>
+            <input type="text" formControlName="title"
+              class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+
+          <!-- Description -->
+          <div class="flex flex-col">
+            <label class="text-gray-700 font-medium mb-1">Description</label>
+            <input type="text" formControlName="description"
+              class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+
+          <!-- Link -->
+          <div class="flex flex-col">
+            <label class="text-gray-700 font-medium mb-1">Link</label>
+            <input type="text" formControlName="link"
+              class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+
+          <!-- Icon -->
+          <div class="flex flex-col">
+            <label class="text-gray-700 font-medium mb-1">Icon</label>
+            <input type="file" (change)="onUploadIcon($event)"
+              class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+          </div>
+
+          <!-- Techs -->
+          <div formArrayName="techs" class="col-span-1 md:col-span-2">
+            <label class="text-gray-700 font-medium mb-1 block">Technologies</label>
+            <div *ngFor="let tech of techs.controls; let i = index" class="flex items-center gap-2 mt-2">
+              <input [formControlName]="i" placeholder="Technology"
+                class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none w-full" />
+            </div>
+            <button type="button" (click)="addTechs()" class="mt-2 px-3 py-1 bg-green-600 text-white rounded">
+              + Add Technology
+            </button>
+          </div>
+
+          <button type="button" class="px-3 py-1 bg-gray-500 text-white rounded" (click)="cancelUpdate()">
+            Cancel Update
+          </button>
+
+          <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded">
+            Confirm Update
+          </button>
+        </form>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="flex flex-col gap-2">
+        <button *ngIf="updatingProjectId !== p._id" class="text-indigo-600 hover:text-indigo-800"
+          (click)="startUpdate(p)">
+          Update
+        </button>
+
+        <button *ngIf="updatingProjectId !== p._id" class="text-red-600 hover:text-red-800"
+          (click)="deleteProject(p._id)">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</section>

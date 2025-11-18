@@ -1,0 +1,96 @@
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <h2 style="color: white;">{{ContactData.header_section}}</h2>
+      <p style="color: rgba(255,255,255,0.8)">{{ContactData.description_section}}</p>
+    </div>
+    <div class="contact-content">
+      <form class="contact-form" (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+        <div class="form-group">
+          <label>{{ContactData.contact_form.name}}</label>
+          <input type="text" name="name" required placeholder="Your name" ngModel>
+        </div>
+        <div class="form-group">
+          <label>{{ContactData.contact_form.email}}</label>
+          <input type="email" name="email" required placeholder="your.email@example.com" ngModel>
+        </div>
+        <div class="form-group">
+          <label>{{ContactData.contact_form.project_type}}</label>
+          <input type="text" name="project_type" placeholder="API Development, Backend System, etc." ngModel>
+        </div>
+        <div class="form-group">
+          <label>{{ContactData.contact_form.message}}</label>
+          <textarea name="message" rows="5" required placeholder="Tell me about your project..." ngModel></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"
+          style="width: 100%;">{{ContactData.contact_form.send_message}}</button>
+      </form>
+
+      <div class="contact-info">
+        <h3>{{ContactData.contact_info.header}}</h3>
+        <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8);">
+          {{ContactData.contact_info.description}}
+        </p>
+
+        <div class="contact-item" *ngFor="let item of ContactData.contact_info.contact_info_item">
+          <div class="contact-item-icon"><img [src]="'http://localhost:3000/'+ item.icon" alt=""></div>
+          <div>
+            <strong>{{item.header}}</strong><br>
+            @if(item.type =='email'){
+            <a [href]="'mailto:'+item.description"
+              style="color: rgba(255,255,255,0.8); text-decoration: none;">{{item.description}}</a>
+            }
+            @else if(item.type =='phone'){
+            <a [href]="'tel:'+item.description"
+              style="color: rgba(255,255,255,0.8); text-decoration: none;">{{item.description}}</a>
+            }
+            @else{
+            <span style="color: rgba(255,255,255,0.8);">{{item.description}}</span>
+            }
+          </div>
+        </div>
+
+        <!-- <div class="contact-item">
+          <div class="contact-item-icon">📱</div>
+          <div>
+            <strong>Phone</strong><br>
+            <a href="tel:+201123662011" style="color: rgba(255,255,255,0.8); text-decoration: none;">+20
+              112 366 2011</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <strong>Location</strong><br>
+            <span style="color: rgba(255,255,255,0.8);">Egypt</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">⏰</div>
+          <div>
+            <strong>Response Time</strong><br>
+            <span style="color: rgba(255,255,255,0.8);">Within 24 hours</span>
+          </div>
+        </div> -->
+
+        <div class="social-links">
+          <a *ngFor="let social of ContactData.contact_info.contact_info_social_link" [href]="social.link"
+            class="social-link">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path [attr.d]="social.svg" />
+            </svg>
+          </a>
+          <!-- <a href="https://linkedin.com/in/ahmed-mo-eid" class="social-link" aria-label="LinkedIn">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
